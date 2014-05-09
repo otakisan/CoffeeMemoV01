@@ -25,6 +25,7 @@
 		16B36308191B9FDE0049CB00 /* CoffeeMemoV01CoffeeMemoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B36307191B9FDE0049CB00 /* CoffeeMemoV01CoffeeMemoItem.m */; };
 		16B3630A191CF0320049CB00 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B36309191CF0320049CB00 /* libsqlite3.dylib */; };
 		16B3630E191CF0C40049CB00 /* CoffeeMemoV01SQLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B3630D191CF0C40049CB00 /* CoffeeMemoV01SQLite.m */; };
+		16B36311191D1EF10049CB00 /* CoffeeMemoV01CoffeeMemoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B36310191D1EF10049CB00 /* CoffeeMemoV01CoffeeMemoItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,11 +60,13 @@
 		16B362F6191AEC1A0049CB00 /* CoffeeMemoV01Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CoffeeMemoV01Tests-Info.plist"; sourceTree = "<group>"; };
 		16B362F8191AEC1A0049CB00 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		16B362FA191AEC1A0049CB00 /* CoffeeMemoV01Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoffeeMemoV01Tests.m; sourceTree = "<group>"; };
-		16B36306191B9FDE0049CB00 /* CoffeeMemoV01CoffeeMemoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoffeeMemoV01CoffeeMemoItem.h; sourceTree = SOURCE_ROOT; };
-		16B36307191B9FDE0049CB00 /* CoffeeMemoV01CoffeeMemoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoffeeMemoV01CoffeeMemoItem.m; sourceTree = SOURCE_ROOT; };
+		16B36306191B9FDE0049CB00 /* CoffeeMemoV01CoffeeMemoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoffeeMemoV01CoffeeMemoItem.h; sourceTree = "<group>"; };
+		16B36307191B9FDE0049CB00 /* CoffeeMemoV01CoffeeMemoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoffeeMemoV01CoffeeMemoItem.m; sourceTree = "<group>"; };
 		16B36309191CF0320049CB00 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		16B3630C191CF0C40049CB00 /* CoffeeMemoV01SQLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoffeeMemoV01SQLite.h; sourceTree = "<group>"; };
 		16B3630D191CF0C40049CB00 /* CoffeeMemoV01SQLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoffeeMemoV01SQLite.m; sourceTree = "<group>"; };
+		16B3630F191D1EF10049CB00 /* CoffeeMemoV01CoffeeMemoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoffeeMemoV01CoffeeMemoItem.h; path = CoffeeMemoV01/Custom/Entities/CoffeeMemoV01CoffeeMemoItem.h; sourceTree = "<group>"; };
+		16B36310191D1EF10049CB00 /* CoffeeMemoV01CoffeeMemoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoffeeMemoV01CoffeeMemoItem.m; path = CoffeeMemoV01/Custom/Entities/CoffeeMemoV01CoffeeMemoItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +183,8 @@
 		16B36305191B9DCC0049CB00 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				16B3630F191D1EF10049CB00 /* CoffeeMemoV01CoffeeMemoItem.h */,
+				16B36310191D1EF10049CB00 /* CoffeeMemoV01CoffeeMemoItem.m */,
 				16B36306191B9FDE0049CB00 /* CoffeeMemoV01CoffeeMemoItem.h */,
 				16B36307191B9FDE0049CB00 /* CoffeeMemoV01CoffeeMemoItem.m */,
 			);
@@ -298,6 +303,7 @@
 				16B362DD191AEC1A0049CB00 /* CoffeeMemoV01AppDelegate.m in Sources */,
 				16B362E6191AEC1A0049CB00 /* CoffeeMemoV01DetailViewController.m in Sources */,
 				16B362D9191AEC1A0049CB00 /* main.m in Sources */,
+				16B36311191D1EF10049CB00 /* CoffeeMemoV01CoffeeMemoItem.m in Sources */,
 				16B362E3191AEC1A0049CB00 /* CoffeeMemoV01MasterViewController.m in Sources */,
 				16B3630E191CF0C40049CB00 /* CoffeeMemoV01SQLite.m in Sources */,
 			);

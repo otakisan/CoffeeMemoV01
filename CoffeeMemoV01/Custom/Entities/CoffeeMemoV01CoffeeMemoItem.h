@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface CoffeeMemoV01CoffeeMemoItem : NSObject
-@property (we)
+
 @end
