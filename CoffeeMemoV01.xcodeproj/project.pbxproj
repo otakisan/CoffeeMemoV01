@@ -22,7 +22,6 @@
 		16B362F1191AEC1A0049CB00 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B362D0191AEC1A0049CB00 /* UIKit.framework */; };
 		16B362F9191AEC1A0049CB00 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 16B362F7191AEC1A0049CB00 /* InfoPlist.strings */; };
 		16B362FB191AEC1A0049CB00 /* CoffeeMemoV01Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B362FA191AEC1A0049CB00 /* CoffeeMemoV01Tests.m */; };
-		16B36308191B9FDE0049CB00 /* CoffeeMemoV01CoffeeMemoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B36307191B9FDE0049CB00 /* CoffeeMemoV01CoffeeMemoItem.m */; };
 		16B3630A191CF0320049CB00 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B36309191CF0320049CB00 /* libsqlite3.dylib */; };
 		16B3630E191CF0C40049CB00 /* CoffeeMemoV01SQLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B3630D191CF0C40049CB00 /* CoffeeMemoV01SQLite.m */; };
 		16B36311191D1EF10049CB00 /* CoffeeMemoV01CoffeeMemoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B36310191D1EF10049CB00 /* CoffeeMemoV01CoffeeMemoItem.m */; };
@@ -60,8 +59,6 @@
 		16B362F6191AEC1A0049CB00 /* CoffeeMemoV01Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CoffeeMemoV01Tests-Info.plist"; sourceTree = "<group>"; };
 		16B362F8191AEC1A0049CB00 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		16B362FA191AEC1A0049CB00 /* CoffeeMemoV01Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoffeeMemoV01Tests.m; sourceTree = "<group>"; };
-		16B36306191B9FDE0049CB00 /* CoffeeMemoV01CoffeeMemoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoffeeMemoV01CoffeeMemoItem.h; sourceTree = "<group>"; };
-		16B36307191B9FDE0049CB00 /* CoffeeMemoV01CoffeeMemoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoffeeMemoV01CoffeeMemoItem.m; sourceTree = "<group>"; };
 		16B36309191CF0320049CB00 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		16B3630C191CF0C40049CB00 /* CoffeeMemoV01SQLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoffeeMemoV01SQLite.h; sourceTree = "<group>"; };
 		16B3630D191CF0C40049CB00 /* CoffeeMemoV01SQLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoffeeMemoV01SQLite.m; sourceTree = "<group>"; };
@@ -185,8 +182,6 @@
 			children = (
 				16B3630F191D1EF10049CB00 /* CoffeeMemoV01CoffeeMemoItem.h */,
 				16B36310191D1EF10049CB00 /* CoffeeMemoV01CoffeeMemoItem.m */,
-				16B36306191B9FDE0049CB00 /* CoffeeMemoV01CoffeeMemoItem.h */,
-				16B36307191B9FDE0049CB00 /* CoffeeMemoV01CoffeeMemoItem.m */,
 			);
 			name = Entities;
 			path = Custom/Entities;
@@ -299,7 +294,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16B36308191B9FDE0049CB00 /* CoffeeMemoV01CoffeeMemoItem.m in Sources */,
 				16B362DD191AEC1A0049CB00 /* CoffeeMemoV01AppDelegate.m in Sources */,
 				16B362E6191AEC1A0049CB00 /* CoffeeMemoV01DetailViewController.m in Sources */,
 				16B362D9191AEC1A0049CB00 /* main.m in Sources */,
@@ -510,6 +504,7 @@
 				16B36300191AEC1A0049CB00 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		16B36301191AEC1A0049CB00 /* Build configuration list for PBXNativeTarget "CoffeeMemoV01Tests" */ = {
 			isa = XCConfigurationList;
@@ -518,6 +513,7 @@
 				16B36303191AEC1A0049CB00 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
