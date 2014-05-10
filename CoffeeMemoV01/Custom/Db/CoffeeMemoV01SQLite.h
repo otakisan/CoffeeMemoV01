@@ -10,7 +10,9 @@
 
 @interface CoffeeMemoV01SQLite : NSObject
 
-// 共有インスタンス
+/**
+ 共有インスタンス
+ */
 +(CoffeeMemoV01SQLite*)sharedSQLite;
 
 // DBフルパス
