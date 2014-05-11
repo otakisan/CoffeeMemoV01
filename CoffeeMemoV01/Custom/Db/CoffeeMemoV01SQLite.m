@@ -144,23 +144,22 @@ static CoffeeMemoV01SQLite* _SQLite;
     } while (*next_sql != 0);   //  C文字列終端コードではないならループ
     
     //  生徒／教師名簿取り出し。
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"MBGameMembers" ofType:@"plist"];
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"CoffeeMemoV01" ofType:@"plist"];
     NSDictionary* dic = [NSDictionary dictionaryWithContentsOfFile:path];
     
-    //  SQLite側生徒名簿作成
-    NSArray* students = dic[@"students"];               //  -objectForKey:の短縮構文。
-    if (addStudent(database, 0, nil, 0, 0) == NO) {     //  無名用
-        printf("無名生徒の登録に失敗\n");
-        closeDB(database);
-        return; //  失敗した。
-    }
-    for (NSDictionary* student in students) {
-        if (addStudent(database, [student[@"number"] intValue], student[@"name"], [student[@"sex"] intValue], [student[@"class"] intValue]) == NO) {
-            printf("生徒登録に失敗\n");
+    // 以下のインサートもある程度共通化できるはず。
+    // 今回はたまたま列が３つでそろっているものが多いので余計にそう見える。
+    
+    //  SQLite側店舗作成
+    NSArray* stores = dic[@"stores"]; //  -objectForKey:の短縮構文。
+    for (NSDictionary* store in stores) {
+        if (addStore(database, store[@"name"], store[@"remarks"]) == NO) {
+            printf("店舗登録に失敗\n");
             closeDB(database);
             return; //  失敗した。
         }
     }
+    
     NSArray* teachers = dic[@"teachers"];
     for (NSDictionary* teacher in teachers) {
         if (addTeacher(database, [teacher[@"number"] intValue], teacher[@"name"]) == NO) {
@@ -236,5 +235,79 @@ static BOOL finalizeStatement(sqlite3* database, sqlite3_stmt *statement)
     return YES;
 }
 
+//  SQliteのSQL文実行用ステートメントの準備とエラー処理。
+static BOOL prepareStatement(sqlite3* database, const char* sql, sqlite3_stmt **statement)
+{
+    *statement = nil;
+	int result = sqlite3_prepare_v2(database, sql, -1, statement, NULL);
+	if (result != SQLITE_OK) {
+		printf("sqlite3_prepare_v2に失敗 (%d) '%s'.\n", result, sqlite3_errmsg(database));
+        return NO;
+	}
+    return YES;
+}
+
+/**
+ 値がNULLの場合は既定値を返却します
+ */
+static NSString* getDefault(NSString* value, NSString* defaultValue){
+    
+    return value ? value : defaultValue;
+}
+
+/**
+ UTF8文字列に変換してバインドします
+ @param option SQLITE_TRANSIENT：SQLite側でデータをコピーする
+ SQLITE_STATIC：文字列のアドレスのみ保持（同じ場所に同じデータが不変に存在する前提）
+ @return 処理結果
+ */
+static int bindTextForUTF8(sqlite3_stmt* statement, int position, NSString* value, int length, sqlite3_destructor_type option){
+    
+    const char* utf8Value = [getDefault(value, @"") UTF8String];
+    int result = sqlite3_bind_text(statement, 1, utf8Value, -1, option);
+    
+    return result;
+}
+
+/**
+ 店舗マスタ追加
+ ステートメント作成→バインド→実行→解放
+ と流れが決まっているので、個別の値だけを注入できるようにすれば共通化できる
+ */
+static BOOL addStore(sqlite3* database, NSString* name, NSString* remarks)
+{
+    //	店舗追加用に使用するステートメント
+    sqlite3_stmt* statement;
+    
+	//	店舗追加用ステートメント準備。
+	if (prepareStatement(database,"insert into students(name, remarks) values(?, ?)", &statement) == NO) {
+        return NO;  //  失敗した。
+    }
+
+    // 列数が増えたときのために、汎用化した処理に追々はしたい。
+    // 型に応じて、バインド関数を変更できればよい。
+    // ただ、引数の数が変わったりするから厄介だな…
+    //  name
+   int result = bindTextForUTF8(statement, 1, name, -1, SQLITE_STATIC);
+    
+    // remarks
+    if(result == SQLITE_OK){
+        result = bindTextForUTF8(statement, 2, remarks, -1, SQLITE_STATIC);
+    }
+
+    if (result != SQLITE_OK) {
+		printf("insert intoでの値の準備に失敗 (%d) '%s'.\n", result, sqlite3_errmsg(database));
+        finalizeStatement(database, statement);
+        return NO;
+    }
+
+    //  実行。
+    if (stepStatement(database, statement) == NO) {
+        finalizeStatement(database, statement);
+        return NO;  //  失敗した。
+    }
+    
+    return finalizeStatement(database, statement);
+}
 
 @end
