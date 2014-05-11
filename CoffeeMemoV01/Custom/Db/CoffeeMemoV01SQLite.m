@@ -117,7 +117,7 @@ static CoffeeMemoV01SQLite* _SQLite;
     "create table method(id integer primary key autoincrement, name text not null, remarks text not null);"
     "create table size(id integer primary key autoincrement, name text not null, remarks text not null);"
     "create table food(id integer primary key autoincrement, name text not null, remarks text not null);"
-    "create table bean(id integer primary key autoincrement, name text not null, three_letter text not null, icon blob not null, remarks text not null);"
+    "create table bean(id integer primary key autoincrement, name text not null, abbr text not null, icon text not null, remarks text not null);"
     ;
     
     const char* next_sql = sql;
@@ -150,7 +150,7 @@ static CoffeeMemoV01SQLite* _SQLite;
     // 以下のインサートもある程度共通化できるはず。
     // 今回はたまたま列が３つでそろっているものが多いので余計にそう見える。
     
-    //  SQLite側店舗作成
+    //  マスタプリセット作成
     NSArray* stores = dic[@"stores"]; //  -objectForKey:の短縮構文。
     for (NSDictionary* store in stores) {
         if (addStore(database, store[@"name"], store[@"remarks"]) == NO) {
@@ -160,10 +160,37 @@ static CoffeeMemoV01SQLite* _SQLite;
         }
     }
     
-    NSArray* teachers = dic[@"teachers"];
-    for (NSDictionary* teacher in teachers) {
-        if (addTeacher(database, [teacher[@"number"] intValue], teacher[@"name"]) == NO) {
-            printf("教師登録に失敗\n");
+    NSArray* methods = dic[@"methods"];
+    for (NSDictionary* method in methods) {
+        if (addMethod(database, method[@"name"], method[@"remarks"]) == NO) {
+            printf("抽出法登録に失敗\n");
+            closeDB(database);
+            return; //  失敗した。
+        }
+    }
+    
+    NSArray* sizes = dic[@"sizes"];
+    for (NSDictionary* size in sizes) {
+        if (addMethod(database, size[@"name"], size[@"remarks"]) == NO) {
+            printf("サイズ登録に失敗\n");
+            closeDB(database);
+            return; //  失敗した。
+        }
+    }
+    
+    NSArray* foods = dic[@"foods"];
+    for (NSDictionary* food in foods) {
+        if (addMethod(database, food[@"name"], food[@"remarks"]) == NO) {
+            printf("フード登録に失敗\n");
+            closeDB(database);
+            return; //  失敗した。
+        }
+    }
+    
+    NSArray* beans = dic[@"beans"];
+    for (NSDictionary* bean in beans) {
+        if (addBean(database, bean[@"name"], bean[@"abbr"], bean[@"icon"], bean[@"remarks"]) == NO) {
+            printf("豆登録に失敗\n");
             closeDB(database);
             return; //  失敗した。
         }
@@ -280,7 +307,7 @@ static BOOL addStore(sqlite3* database, NSString* name, NSString* remarks)
     sqlite3_stmt* statement;
     
 	//	店舗追加用ステートメント準備。
-	if (prepareStatement(database,"insert into students(name, remarks) values(?, ?)", &statement) == NO) {
+	if (prepareStatement(database,"insert into store(name, remarks) values(?, ?)", &statement) == NO) {
         return NO;  //  失敗した。
     }
 
@@ -309,5 +336,160 @@ static BOOL addStore(sqlite3* database, NSString* name, NSString* remarks)
     
     return finalizeStatement(database, statement);
 }
+
+/**
+ 抽出法マスタ追加
+ */
+static BOOL addMethod(sqlite3* database, NSString* name, NSString* remarks)
+{
+    //	追加用に使用するステートメント
+    sqlite3_stmt* statement;
+    
+	//	追加用ステートメント準備。
+	if (prepareStatement(database,"insert into method(name, remarks) values(?, ?)", &statement) == NO) {
+        return NO;  //  失敗した。
+    }
+    
+    //  name
+    int result = bindTextForUTF8(statement, 1, name, -1, SQLITE_STATIC);
+    
+    // remarks
+    if(result == SQLITE_OK){
+        result = bindTextForUTF8(statement, 2, remarks, -1, SQLITE_STATIC);
+    }
+    
+    if (result != SQLITE_OK) {
+		printf("insert intoでの値の準備に失敗 (%d) '%s'.\n", result, sqlite3_errmsg(database));
+        finalizeStatement(database, statement);
+        return NO;
+    }
+    
+    //  実行。
+    if (stepStatement(database, statement) == NO) {
+        finalizeStatement(database, statement);
+        return NO;  //  失敗した。
+    }
+    
+    return finalizeStatement(database, statement);
+}
+
+/**
+ サイズマスタ追加
+ */
+static BOOL addSize(sqlite3* database, NSString* name, NSString* remarks)
+{
+    //	追加用に使用するステートメント
+    sqlite3_stmt* statement;
+    
+	//	追加用ステートメント準備。
+	if (prepareStatement(database,"insert into size(name, remarks) values(?, ?)", &statement) == NO) {
+        return NO;  //  失敗した。
+    }
+    
+    //  name
+    int result = bindTextForUTF8(statement, 1, name, -1, SQLITE_STATIC);
+    
+    // remarks
+    if(result == SQLITE_OK){
+        result = bindTextForUTF8(statement, 2, remarks, -1, SQLITE_STATIC);
+    }
+    
+    if (result != SQLITE_OK) {
+		printf("insert intoでの値の準備に失敗 (%d) '%s'.\n", result, sqlite3_errmsg(database));
+        finalizeStatement(database, statement);
+        return NO;
+    }
+    
+    //  実行。
+    if (stepStatement(database, statement) == NO) {
+        finalizeStatement(database, statement);
+        return NO;  //  失敗した。
+    }
+    
+    return finalizeStatement(database, statement);
+}
+
+/**
+ フードマスタ追加
+ */
+static BOOL addFood(sqlite3* database, NSString* name, NSString* remarks)
+{
+    //	追加用に使用するステートメント
+    sqlite3_stmt* statement;
+    
+	//	追加用ステートメント準備。
+	if (prepareStatement(database,"insert into food(name, remarks) values(?, ?)", &statement) == NO) {
+        return NO;  //  失敗した。
+    }
+    
+    //  name
+    int result = bindTextForUTF8(statement, 1, name, -1, SQLITE_STATIC);
+    
+    // remarks
+    if(result == SQLITE_OK){
+        result = bindTextForUTF8(statement, 2, remarks, -1, SQLITE_STATIC);
+    }
+    
+    if (result != SQLITE_OK) {
+		printf("insert intoでの値の準備に失敗 (%d) '%s'.\n", result, sqlite3_errmsg(database));
+        finalizeStatement(database, statement);
+        return NO;
+    }
+    
+    //  実行。
+    if (stepStatement(database, statement) == NO) {
+        finalizeStatement(database, statement);
+        return NO;  //  失敗した。
+    }
+    
+    return finalizeStatement(database, statement);
+}
+
+/**
+ 豆マスタ追加
+ */
+static BOOL addBean(sqlite3* database, NSString* name, NSString* abbr, NSString* icon, NSString* remarks)
+{
+    //	追加用に使用するステートメント
+    sqlite3_stmt* statement;
+    
+	//	追加用ステートメント準備。
+	if (prepareStatement(database,"insert into bean(name, remarks) values(?, ?)", &statement) == NO) {
+        return NO;  //  失敗した。
+    }
+    
+    //  name
+    int result = bindTextForUTF8(statement, 1, name, -1, SQLITE_STATIC);
+    
+    //  abbr
+    if(result == SQLITE_OK){
+        result = bindTextForUTF8(statement, 2, abbr, -1, SQLITE_STATIC);
+    }
+    
+    //  icon
+    if(result == SQLITE_OK){
+        result = bindTextForUTF8(statement, 3, icon, -1, SQLITE_STATIC);
+    }
+    
+    //  remarks
+    if(result == SQLITE_OK){
+        result = bindTextForUTF8(statement, 4, remarks, -1, SQLITE_STATIC);
+    }
+    
+    if (result != SQLITE_OK) {
+		printf("insert intoでの値の準備に失敗 (%d) '%s'.\n", result, sqlite3_errmsg(database));
+        finalizeStatement(database, statement);
+        return NO;
+    }
+    
+    //  実行。
+    if (stepStatement(database, statement) == NO) {
+        finalizeStatement(database, statement);
+        return NO;  //  失敗した。
+    }
+    
+    return finalizeStatement(database, statement);
+}
+
 
 @end
