@@ -25,7 +25,7 @@
 		16B3630A191CF0320049CB00 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B36309191CF0320049CB00 /* libsqlite3.dylib */; };
 		16B3630E191CF0C40049CB00 /* CoffeeMemoV01SQLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B3630D191CF0C40049CB00 /* CoffeeMemoV01SQLite.m */; };
 		16B36311191D1EF10049CB00 /* CoffeeMemoV01CoffeeMemoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B36310191D1EF10049CB00 /* CoffeeMemoV01CoffeeMemoItem.m */; };
-		16DBF5D7191EE5760076333D /* CoffeeMemoV01.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16DBF5D6191EE5760076333D /* CoffeeMemoV01.plist */; };
+		16DBF5D9191F1FC10076333D /* CoffeeMemoV01.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16DBF5D8191F1FC10076333D /* CoffeeMemoV01.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,9 +63,9 @@
 		16B36309191CF0320049CB00 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		16B3630C191CF0C40049CB00 /* CoffeeMemoV01SQLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoffeeMemoV01SQLite.h; sourceTree = "<group>"; };
 		16B3630D191CF0C40049CB00 /* CoffeeMemoV01SQLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoffeeMemoV01SQLite.m; sourceTree = "<group>"; };
-		16B3630F191D1EF10049CB00 /* CoffeeMemoV01CoffeeMemoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoffeeMemoV01CoffeeMemoItem.h; path = CoffeeMemoV01/Custom/Entities/CoffeeMemoV01CoffeeMemoItem.h; sourceTree = "<group>"; };
-		16B36310191D1EF10049CB00 /* CoffeeMemoV01CoffeeMemoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoffeeMemoV01CoffeeMemoItem.m; path = CoffeeMemoV01/Custom/Entities/CoffeeMemoV01CoffeeMemoItem.m; sourceTree = "<group>"; };
-		16DBF5D6191EE5760076333D /* CoffeeMemoV01.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CoffeeMemoV01.plist; path = ../../../../../../CoffeeMemoV01.plist; sourceTree = "<group>"; };
+		16B3630F191D1EF10049CB00 /* CoffeeMemoV01CoffeeMemoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoffeeMemoV01CoffeeMemoItem.h; sourceTree = "<group>"; };
+		16B36310191D1EF10049CB00 /* CoffeeMemoV01CoffeeMemoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoffeeMemoV01CoffeeMemoItem.m; sourceTree = "<group>"; };
+		16DBF5D8191F1FC10076333D /* CoffeeMemoV01.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CoffeeMemoV01.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,8 +186,7 @@
 				16B3630F191D1EF10049CB00 /* CoffeeMemoV01CoffeeMemoItem.h */,
 				16B36310191D1EF10049CB00 /* CoffeeMemoV01CoffeeMemoItem.m */,
 			);
-			name = Entities;
-			path = Custom/Entities;
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		16B3630B191CF0830049CB00 /* Db */ = {
@@ -202,7 +201,7 @@
 		16DBF5D3191EE29C0076333D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				16DBF5D6191EE5760076333D /* CoffeeMemoV01.plist */,
+				16DBF5D8191F1FC10076333D /* CoffeeMemoV01.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -286,7 +285,7 @@
 			files = (
 				16B362E8191AEC1A0049CB00 /* Images.xcassets in Resources */,
 				16B362D7191AEC1A0049CB00 /* InfoPlist.strings in Resources */,
-				16DBF5D7191EE5760076333D /* CoffeeMemoV01.plist in Resources */,
+				16DBF5D9191F1FC10076333D /* CoffeeMemoV01.plist in Resources */,
 				16B362E0191AEC1A0049CB00 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
