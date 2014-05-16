@@ -10,6 +10,8 @@
 
 #import "CoffeeMemoV01DetailViewController.h"
 
+#import "Custom/Entities/CoffeeMemoV01CoffeeMemoItem.h"
+
 @interface CoffeeMemoV01MasterViewController () {
     NSMutableArray *_objects;
 }
@@ -43,6 +45,8 @@
     if (!_objects) {
         _objects = [[NSMutableArray alloc] init];
     }
+    
+    CoffeeMemoV01CoffeeMemoItem *memoItem = [CoffeeMemoV01CoffeeMemoItem alloc];
     
     NSDate *itemObject = [NSDate date];
     [_objects insertObject:itemObject atIndex:0];
